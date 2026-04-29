@@ -1,0 +1,93 @@
+[
+  {
+    "id": 101,
+    "name": "Aarav Sharma",
+    "age": 32,
+    "disease": "Diabetes",
+    "city": "Mumbai"
+  },
+  {
+    "id": 102,
+    "name": "Ananya Iyer",
+    "age": 27,
+    "disease": "Asthma",
+    "city": "Chennai"
+  },
+  {
+    "id": 103,
+    "name": "Rohan Mehta",
+    "age": 45,
+    "disease": "Hypertension",
+    "city": "Delhi"
+  },
+  {
+    "id": 104,
+    "name": "Priya Nair",
+    "age": 38,
+    "disease": "Migraine",
+    "city": "Kochi"
+  },
+  {
+    "id": 105,
+    "name": "Karan Verma",
+    "age": 29,
+    "disease": "Allergy",
+    "city": "Pune"
+  },
+  {
+    "id": 106,
+    "name": "Sneha Kapoor",
+    "age": 34,
+    "disease": "Arthritis",
+    "city": "Jaipur"
+  },
+  {
+    "id": 107,
+    "name": "Vikram Patel",
+    "age": 50,
+    "disease": "Cardiac Disease",
+    "city": "Ahmedabad"
+  },
+  {
+    "id": 108,
+    "name": "Neha Gupta",
+    "age": 31,
+    "disease": "Thyroid Disorder",
+    "city": "Lucknow"
+  },
+  {
+    "id": 109,
+    "name": "Rahul Singh",
+    "age": 40,
+    "disease": "Bronchitis",
+    "city": "Bhopal"
+  },
+  {
+    "id": 110,
+    "name": "Ishita Roy",
+    "age": 26,
+    "disease": "Anemia",
+    "city": "Kolkata"
+  },
+  {
+    "id": 1,
+    "name": "Aditya",
+    "age": 18,
+    "disease": "cold",
+    "city": "Sambhajinagar"
+  },
+  {
+    "id": 111,
+    "name": "Prashant khade",
+    "age": 20,
+    "disease": "Malaria",
+    "city": "pune"
+  },
+  {
+    "id": 112,
+    "name": "Tarun Patil",
+    "age": 23,
+    "disease": "Cancer",
+    "city": "Mumbai"
+  }
+]
