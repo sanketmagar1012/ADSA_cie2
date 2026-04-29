@@ -8,6 +8,9 @@ function App() {
   const [namePrefix, setNamePrefix] = useState("");
   const [prefixResults, setPrefixResults] = useState([]);
   const [idQuery, setIdQuery] = useState("");
+  const [rangeLow, setRangeLow] = useState("");
+  const [rangeHigh, setRangeHigh] = useState("");
+  const [rangeResults, setRangeResults] = useState([]);
   const [selectedPatient, setSelectedPatient] = useState(null);
   const [searchMessage, setSearchMessage] = useState("");
   const [addMessage, setAddMessage] = useState("");
@@ -72,6 +75,36 @@ function App() {
       setSearchMessage("");
     } catch (error) {
       setSearchMessage("ID search failed.");
+    }
+  };
+
+  const handleRangeSearch = async () => {
+    if (!rangeLow.trim() || !rangeHigh.trim()) {
+      setSearchMessage("Enter both low and high ID values.");
+      setRangeResults([]);
+      return;
+    }
+
+    try {
+      const response = await fetch(
+        `${API_BASE_URL}/rangeQuery/${encodeURIComponent(rangeLow)}/${encodeURIComponent(rangeHigh)}`,
+      );
+      const data = await response.json();
+      if (!response.ok || !Array.isArray(data)) {
+        setSearchMessage("Range search failed.");
+        setRangeResults([]);
+        return;
+      }
+
+      setRangeResults(data);
+      setSearchMessage(
+        data.length > 0
+          ? `Found ${data.length} patient(s) in the selected ID range.`
+          : "No patients found in this ID range.",
+      );
+    } catch (error) {
+      setSearchMessage("Range search failed.");
+      setRangeResults([]);
     }
   };
 
@@ -204,6 +237,27 @@ function App() {
             </div>
           </section>
 
+          <section className="panel">
+            <h2>ID Range Search (BST Range Query)</h2>
+            <div className="row">
+              <input
+                type="number"
+                value={rangeLow}
+                onChange={(event) => setRangeLow(event.target.value)}
+                placeholder="Low ID"
+              />
+              <input
+                type="number"
+                value={rangeHigh}
+                onChange={(event) => setRangeHigh(event.target.value)}
+                placeholder="High ID"
+              />
+              <button type="button" onClick={handleRangeSearch}>
+                Search Range
+              </button>
+            </div>
+          </section>
+
           {searchMessage && <p className="message">{searchMessage}</p>}
 
           {selectedPatient && (
@@ -225,6 +279,36 @@ function App() {
                 <p>
                   <strong>City:</strong> {selectedPatient.city}
                 </p>
+              </div>
+            </section>
+          )}
+
+          {rangeResults.length > 0 && (
+            <section className="panel">
+              <h2>Range Search Results</h2>
+              <div className="table-wrapper">
+                <table className="patient-table">
+                  <thead>
+                    <tr>
+                      <th>ID</th>
+                      <th>Name</th>
+                      <th>Age</th>
+                      <th>Disease</th>
+                      <th>City</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {rangeResults.map((patient) => (
+                      <tr key={`range-${patient.id}`}>
+                        <td>{patient.id}</td>
+                        <td>{patient.name}</td>
+                        <td>{patient.age}</td>
+                        <td>{patient.disease}</td>
+                        <td>{patient.city}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
               </div>
             </section>
           )}
